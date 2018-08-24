@@ -54,6 +54,24 @@ tape("Can get topics relating to a board by board name", t => {
   );
 });
 
+tape("I get an error if the board I wanna access doesn't exist based on ID", t => {
+  runDbTestBuild().then(
+    getTopics
+      .checkBoardId('6')
+      // .then(res => {
+      //   console.log(res);
+      //   t.equal(res.length, 0, 'board id 6 should not exist');
+      //   t.end();
+      // })
+      .catch(error => {
+        t.ok(error, 'should return an error')
+        t.end();
+      })
+  );
+});
+
+
+
 // tape("getTopics function can handle errors", t => {
 //   runDbTestBuild().then(
 //     getTopics
