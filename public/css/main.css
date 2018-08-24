@@ -153,6 +153,11 @@ nav {
   font-family: 'Gugi', sans-serif;
 }
 
+nav a {
+  color: #fcfcf7 !important;
+  text-decoration: none !important;
+}
+
 #logo {
   margin-left: 8px;
   margin-right: 16px;
@@ -170,16 +175,29 @@ h1 {
   letter-spacing: 2px;
 }
 
+h2 {
+  font-size: 1.414rem;
+}
+
+@media all and (min-width: 800px) {
+  h2 {
+    font-size: 2.827rem;
+  }
+}
+
 main {
   padding-top: 4rem;
 }
 
+/* LANDING PAGE */
+
 #container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   height: calc(100vh - 4rem);
+  color: #fcfcf7;
 }
 
 .landing_button {
@@ -188,35 +206,75 @@ main {
   justify-content: center;
   align-items: center;
   border: solid;
-  width: 45vw;
-  height: calc((90vw - 4rem) / 2);
+  width: 50vmin;
+  height: 50vmin;
 }
 
-h2 {
-  font-size: 2.827rem;
+.landing_button:hover {
+  cursor: pointer;
 }
 
 #plus {
-  font-size: 20rem;
+  font-size: 10rem;
+  line-height: 6rem;
+}
+
+#container a {
+  text-decoration: none;
+  color: #fcfcf7;
+}
+
+#create {
+  background: #89ba1f;
+}
+
+#join {
+  background: #257edd;
 }
 
 #board_name {
-  font-size: 2rem;
+  font-size: 1rem;
   width: auto;
+  margin-bottom: 16px;
 }
+
+@media all and (min-width: 600px) {
+  #container {
+    flex-direction: row;
+  }
+
+  .landing_button {
+    width: 45vw;
+    height: calc((90vw - 4rem) / 2);
+  }
+
+  #plus {
+    font-size: 15rem;
+    line-height: 8.5rem;
+  }
+
+  #board_name {
+    font-size: 1.2rem;
+    width: auto;
+  }
+}
+
+/* BOARD PAGE */
 
 .board_container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   padding-top: 32px;
 }
 
 .board {
-  width: 30vw;
-  min-height: 80vh;
+  width: calc(100vw - 64px);
+  margin-left: 32px;
+  margin-bottom: 32px;
   padding: 8px;
   border-radius: 4px;
+  min-height: 20vh;
 }
 
 .board > h2 {
@@ -229,8 +287,11 @@ h2 {
 
 .board > .board_symbol {
   display: block;
-  width: 15%;
+  width: 5vw;
   margin: 8px auto 16px auto;
+}
+
+.delete {
 }
 
 #board--stop {
@@ -245,25 +306,99 @@ h2 {
   background: rgba(37, 126, 221, 0.25);
 }
 
+@media all and (min-width: 800px) {
+  .board_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 32px;
+  }
+
+  .board {
+    width: 30vw;
+    min-height: 80vh;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0;
+  }
+}
+
+/* ADD TOPIC FORM */
+
 #add_topic {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100vw;
-  height: 4rem;
   background-color: rgba(10, 36, 63, 1);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   padding: 8px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  transition: 0.5s;
+}
+
+.footer--hidden {
+  transform: translateY(100%);
+}
+
+.drawer-button {
+  position: absolute;
+  top: -96px;
+  right: 16px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #257edd;
+  font-size: 3em;
+  border-radius: 50%;
+  color: #fcfcf7;
+  border: none;
+  transition: 0.5s;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.drawer-button:focus {
+  outline: none;
+  background: #89ba1f;
+}
+
+.drawer-button--hidden {
+  transform: rotate(45deg);
+}
+
+.drawer-button--hidden:focus {
+  background: #bc3232;
+}
+
+@media all and (min-width: 800px) {
+  .drawer-button--hidden {
+    transform: rotate(45deg);
+    top: 16px;
+  }
 }
 
 #add_topic > form {
-  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: calc(100% - 32px);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#add_topic > form > input[type='text'] {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 4px;
+}
+
+#radio-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 #new_topic {
@@ -276,11 +411,108 @@ h2 {
   width: 24px;
 }
 
+/* The container */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fcfcf7;
+}
+
+/* Hide the browser's default radio button */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  border: 2px solid #fcfcf7;
+}
+
+.checkmark--red {
+  background: #bc3232;
+}
+
+.checkmark--blue {
+  background: #257edd;
+}
+
+.checkmark--green {
+  background: #89ba1f;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  filter: brightness(1.2);
+}
+
+/* When the radio button is checked, add a blue background */
+.container input:checked ~ .checkmark {
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+  top: 6px;
+  left: 7px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fcfcf7;
+}
+
+/* style the submit button */
+
+button[type='submit'] {
+  background: #89ba1f;
+  font-size: 1em;
+  padding: 8px;
+  height: calc(1em + 32px);
+  color: #fcfcf7;
+}
+
+button[type='submit']:focus,
+button[type='submit']:hover {
+  background: #257edd;
+}
+
+/* LIST OF TOPICS */
+
 ul > li {
   padding: 8px;
   margin: 8px 0;
   border-radius: 4px;
   color: #fcfcf7;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #board--stop > ul > li {
@@ -293,4 +525,13 @@ ul > li {
 
 #board--continue > ul > li {
   background: #257edd;
+}
+
+.delete {
+  background: #fcfcf7;
+  color: #bc3232;
+  border: none;
+  border-radius: 50%;
+  padding: 2px 7px 4px 7px;
+  font-size: 16px;
 }

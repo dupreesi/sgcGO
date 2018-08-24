@@ -5,7 +5,7 @@
     <img src="image/stop.svg" alt="stop sign" class="board_symbol">
     <ul>
       {{#each stop}}
-      <li>{{this.text_content}}</li>
+      <li>{{this.text_content}}<button class="delete" id="{{this.id}}">&times;</button></li>
       {{/each}}
     </ul>
   </section>
@@ -15,7 +15,7 @@
     <img src="image/go.svg" alt="go sign" class="board_symbol">
     <ul>
       {{#each go}}
-      <li>{{this.text_content}}</li>
+      <li>{{this.text_content}}<button class="delete" id="{{this.id}}">&times;</button></li>
       {{/each}}
     </ul>
   </section>
@@ -25,7 +25,7 @@
     <img src="image/continue.svg" alt="continue sign" class="board_symbol">
     <ul>
       {{#each cont}}
-      <li>{{this.text_content}}</li>
+      <li>{{this.text_content}}<button class="delete" id="{{this.id}}">&times;</button></li>
       {{/each}}
     </ul>
   </section>
@@ -33,15 +33,31 @@
 </div>
 
 <footer id="add_topic">
+  <button class="drawer-button" id="drawerButton">&plus;</button>
   <form action="/add" method="POST">
+
     <input name="board_id" type="hidden" value="{{ name }}">
-    <input name="topic" type="text" id="new_topic" placeholder="Add a new topic...">
-    <input type="radio" name="sgc" id="input_stop" value="1" checked>
-    <label for="input-stop"><img src="image/stop.svg" alt="stop sign" class="input_symbol"></label>
-    <input type="radio" name="sgc" id="input-go" value="2">
-    <label for="input-go"><img src="image/go.svg" alt="go sign" class="input_symbol"></label>
-    <input type="radio" name="sgc" id="input_continue" value="3">
-    <label for="input_continue"><img src="image/continue.svg" alt="continue sign" class="input_symbol"></label>
+
+    <input name="topic" type="text" id="new_topic" placeholder="Add a new topic..." autocomplete="off" required>
+
+    <div role="presentation" id="radio-container">
+      <label class="container">Stop
+        <input type="radio" checked="checked" name="sgc" value="1">
+        <span class="checkmark checkmark--red"></span>
+      </label>
+
+      <label class="container">Go
+        <input type="radio" name="sgc" value="2">
+        <span class="checkmark checkmark--green"></span>
+      </label>
+
+      <label class="container">Continue
+        <input type="radio" name="sgc" value="3">
+        <span class="checkmark checkmark--blue"></span>
+      </label>
+    </div>
+
     <button type="submit" id="submit-topic'">Submit topic</button>
+
   </form>
 </footer>
