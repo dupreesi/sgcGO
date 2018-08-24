@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 /* Hide input drawer and show + icon */
-
 var footer = document.getElementById('add_topic');
 footer.classList.add('footer--hidden');
 var drawerButton = document.getElementById('drawerButton');
@@ -10,27 +9,37 @@ drawerButton.addEventListener('click', function() {
   drawerButton.classList.toggle('drawer-button--hidden');
 });
 
-// var join = document.getElementById('join');
-// var joinBoardInput = document.getElementById('board_name');
+var join = document.getElementById('join');
+var joinBoardInput = document.getElementById('board_name');
+var deleteButtons = document.querySelectorAll('.delete');
 
-// var joinTable = function() {
-//   if (joinBoardInput.value) {
-//     var boardName = joinBoardInput.value;
-//     window.location.href = '/board/' + boardName;
-//   }
-// };
+/* add event listeners to delete items */
 
-// joinBoardInput.addEventListener('click', function(event) {
-//   event.stopPropagation();
-// });
+for (var i = 0; i < deleteButtons.length; i++) {
+  deleteButtons[i].addEventListener('click', function(event) {
+    event.preventDefault();
+    window.location.href = '/removetopic/' + event.target.id;
+  });
+}
 
-// joinBoardInput.addEventListener('keypress', function(event) {
-//   var key = event.which || event.keyCode;
-//   if (key === 13) {
-//     joinTable();
-//   }
-// });
+var joinTable = function() {
+  if (joinBoardInput.value) {
+    var boardName = joinBoardInput.value;
+    window.location.href = '/board/' + boardName;
+  }
+};
 
-// join.addEventListener('click', function(event) {
-//   joinTable();
-// });
+joinBoardInput.addEventListener('click', function(event) {
+  event.stopPropagation();
+});
+
+joinBoardInput.addEventListener('keypress', function(event) {
+  var key = event.which || event.keyCode;
+  if (key === 13) {
+    joinTable();
+  }
+});
+
+join.addEventListener('click', function(event) {
+  joinTable();
+});

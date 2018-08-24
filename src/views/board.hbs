@@ -5,7 +5,7 @@
     <img src="image/stop.svg" alt="stop sign" class="board_symbol">
     <ul>
       {{#each stop}}
-      <li>{{this.text_content}}</li>
+      <li>{{this.text_content}}<button class="delete" id="{{this.id}}">&times;</button></li>
       {{/each}}
     </ul>
   </section>
@@ -15,7 +15,7 @@
     <img src="image/go.svg" alt="go sign" class="board_symbol">
     <ul>
       {{#each go}}
-      <li>{{this.text_content}}</li>
+      <li>{{this.text_content}}<button class="delete" id="{{this.id}}">&times;</button></li>
       {{/each}}
     </ul>
   </section>
@@ -25,7 +25,7 @@
     <img src="image/continue.svg" alt="continue sign" class="board_symbol">
     <ul>
       {{#each cont}}
-      <li>{{this.text_content}}</li>
+      <li>{{this.text_content}}<button class="delete" id="{{this.id}}">&times;</button></li>
       {{/each}}
     </ul>
   </section>

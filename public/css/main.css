@@ -291,6 +291,9 @@ main {
   margin: 8px auto 16px auto;
 }
 
+.delete {
+}
+
 #board--stop {
   background: rgba(188, 50, 50, 0.25);
 }
@@ -481,7 +484,7 @@ main {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: white;
+  background: #fcfcf7;
 }
 
 /* style the submit button */
@@ -506,6 +509,10 @@ ul > li {
   margin: 8px 0;
   border-radius: 4px;
   color: #fcfcf7;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 #board--stop > ul > li {
@@ -518,4 +525,13 @@ ul > li {
 
 #board--continue > ul > li {
   background: #257edd;
+}
+
+.delete {
+  background: #fcfcf7;
+  color: #bc3232;
+  border: none;
+  border-radius: 50%;
+  padding: 2px 7px 4px 7px;
+  font-size: 16px;
 }
