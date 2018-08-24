@@ -10,5 +10,5 @@ exports.get = (req, res, next) => {
       const cont = topics.filter(topic => topic.sgc === 3);
       res.render("board", { name, stop, go, cont });
     })
-    .catch(err => next(err));
+    .catch(err => next(new Error("problem populating board")));
 };

@@ -5,5 +5,5 @@ module.exports = (req, res, next) => {
     .then(id => {
       res.redirect(`/board/${id}`);
     })
-    .catch(err => next(err));
+    .catch(err => next(new Error("Error creating new board")));
 };
