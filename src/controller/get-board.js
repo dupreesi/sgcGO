@@ -1,6 +1,6 @@
 const getTopics = require("../queries/get_topics");
 
-exports.get = (req, res) => {
+exports.get = (req, res, next) => {
   const { name } = req.params;
   getTopics.checkBoardId(name)
     .then(res => {
