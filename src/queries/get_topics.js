@@ -23,3 +23,14 @@ exports.byName = name =>
       }
     );
   });
+
+exports.checkBoardId = (id) =>
+  new Promise((resolve, reject) => {
+    dbConnection.query(
+      `SELECT id FROM boards WHERE id=$1`, [id], (err, res) => {
+        console.log(res.rowCount);
+        if (err || res.rowCount === 0) return reject(new Error("error due to invalid id"));
+        resolve(res.rows);
+      }
+    )
+  })
