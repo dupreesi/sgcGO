@@ -2,6 +2,14 @@
 
 var join = document.getElementById("join");
 var joinBoardInput = document.getElementById("board_name");
+var deleteButtons = document.querySelectorAll(".delete");
+
+for (var i = 0; i < deleteButtons.length; i++) {
+  deleteButtons[i].addEventListener("click", function(event) {
+    event.preventDefault();
+    window.location.href = "/removetopic/" + event.target.id;
+  });
+}
 
 var joinTable = function() {
   if (joinBoardInput.value) {

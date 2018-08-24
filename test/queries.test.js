@@ -1,53 +1,54 @@
-const tape = require('tape');
-const runDbTestBuild = require('../src/database/test_build');
-const getTopics = require('../src/queries/get_topics');
-const addTopic = require('../src/queries/add_topic');
-const createBoard = require('../src/queries/create_board');
+const tape = require("tape");
+const runDbTestBuild = require("../src/database/test_build");
+const getTopics = require("../src/queries/get_topics");
+const addTopic = require("../src/queries/add_topic");
+const createBoard = require("../src/queries/create_board");
+const removeTopic = require("../src/queries/remove_topic");
 
-tape('tape is running', t => {
-  t.equal(2 + 2, 4, '2 plus 2 is 4');
+tape("tape is running", t => {
+  t.equal(2 + 2, 4, "2 plus 2 is 4");
   t.end();
 });
 
-tape('Database is generating', t => {
+tape("Database is generating", t => {
   runDbTestBuild()
     .then(res => {
-      t.ok(res, 'Is true');
+      t.ok(res, "Is true");
       t.end();
     })
     .catch(error => {
-      t.error(error, 'This should not be here, ERROR ERROR');
+      t.error(error, "This should not be here, ERROR ERROR");
       t.end();
     });
 });
 
-tape('Can get topics relating to a board by board id', t => {
+tape("Can get topics relating to a board by board id", t => {
   runDbTestBuild().then(
     getTopics
       .byId(1)
       .then(res => {
-        t.ok(res, 'should get a result');
-        t.equal(res.length, 6, 'board 1 should have 6 topics');
+        t.ok(res, "should get a result");
+        t.equal(res.length, 6, "board 1 should have 6 topics");
         t.end();
       })
       .catch(error => {
-        t.error(error, 'Oh no');
+        t.error(error, "Oh no");
         t.end();
       })
   );
 });
 
-tape('Can get topics relating to a board by board name', t => {
+tape("Can get topics relating to a board by board name", t => {
   runDbTestBuild().then(
     getTopics
-      .byName('sgcGO122')
+      .byName("sgcGO122")
       .then(res => {
-        t.ok(res, 'should get a result');
-        t.equal(res.length, 6, 'board 1 should have 6 topics');
+        t.ok(res, "should get a result");
+        t.equal(res.length, 6, "board 1 should have 6 topics");
         t.end();
       })
       .catch(error => {
-        t.error(error, 'Oh no');
+        t.error(error, "Oh no");
         t.end();
       })
   );
@@ -68,24 +69,34 @@ tape('Can get topics relating to a board by board name', t => {
 //   );
 // });
 
-tape('can add a topic to a board', t => {
+tape("can add a topic to a board", t => {
   const topic = {
     board_id: 1,
-    topic: 'black pudding',
-    sgc: 1,
+    topic: "black pudding",
+    sgc: 1
   };
   runDbTestBuild().then(
     addTopic(topic).then(res => {
-      t.equal(res.rowCount, 1, 'should insert 1 row');
+      t.equal(res.rowCount, 1, "should insert 1 row");
       t.end();
     })
   );
 });
 
-tape('Create a board', t => {
+tape("Create a board", t => {
   runDbTestBuild().then(
     createBoard().then(id => {
-      t.equal(id, 5, 'New board has the ID of 5 ');
+      t.equal(id, 5, "New board has the ID of 5 ");
+      t.end();
+    })
+  );
+});
+
+tape("Can remove a topic from a board", t => {
+  const id = 1;
+  runDbTestBuild().then(
+    removeTopic(id).then(res => {
+      t.equal(res.rowCount, 1, "should return row count of 1");
       t.end();
     })
   );
