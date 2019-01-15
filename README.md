@@ -1,6 +1,8 @@
 # sgcGO
 > Founders and Coders Week 8 project 
 
+![](https://api.travis-ci.org/arrested-developer/sgcGO.svg?branch=master) [![codecov](https://codecov.io/gh/arrested-developer/sgcGO/branch/master/graph/badge.svg)](https://codecov.io/gh/arrested-developer/sgcGO)
+
 Stop Go Continue - now digitally available so we can do it in the park :>)
 
 ## Local Installation
